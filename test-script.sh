@@ -14,58 +14,60 @@ libfreetype6-dev libsdl2-dev libva-dev libvdpau-dev libvorbis-dev libxcb1-dev li
 libxcb-xfixes0-dev zlib1g-dev libx264-dev libx265-dev libnuma-dev libvpx-dev libmp3lame-dev libopus-dev \
 mc locate libghc-bzlib-dev speex libspeex-dev alsa libssl-dev libgettextpo-dev
 
-mkdir -p $DIR/gstbuild
+#mkdir -p $DIR/gstreamer-rockchip
 
-cd $DIR/gstbuild/mpp/
+git clone https://github.com/primoitt83/gstreamer-rockchip.git
+
+cd $DIR/gstreamer-rockchip/mpp/
 cmake -DRKPLATFORM=ON -DHAVE_DRM=ON 
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gstreamer/
+cd $DIR/gstreamer-rockchip/gstreamer/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr
 time make -j4 ERROR_CFLAGS=""
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gst-plugins-base/
+cd $DIR/gstreamer-rockchip/gst-plugins-base/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gst-plugins-good/
+cd $DIR/gstreamer-rockchip/gst-plugins-good/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gst-plugins-ugly/
+cd $DIR/gstreamer-rockchip/gst-plugins-ugly/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gst-plugins-bad/
+cd $DIR/gstreamer-rockchip/gst-plugins-bad/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gst-libav/
+cd $DIR/gstreamer-rockchip/gst-libav/
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 cd ..
 
-cd $DIR/gstbuild/gstreamer-rockchip
+cd $DIR/gstreamer-rockchip/gstreamer-rockchip
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 time make -j4
 sudo make install
 ldconfig
 cd ..
 
-cd $DIR/gstbuild/gstreamer-rockchip-extra
+cd $DIR/gstreamer-rockchip/gstreamer-rockchip-extra
 ./autogen.sh --disable-gtk-doc --enable-static --enable-shared --prefix=/usr --disable-fatal-warnings
 make clean
 time make -j4
@@ -73,7 +75,7 @@ make install
 ldconfig
 cd ..
 
-# cd $DIR/gstbuild/rockchip_mirrors/
+# cd $DIR/gstreamer-rockchip/rockchip_mirrors/
 # mkdir build
 # meson build
 # cd build
